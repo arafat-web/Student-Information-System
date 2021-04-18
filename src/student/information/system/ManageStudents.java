@@ -243,19 +243,39 @@ public class ManageStudents extends javax.swing.JFrame {
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         // TODO add your handling code here:
-        UpdateStudent updateData = new UpdateStudent();
-        updateData.setVisible(true);
-        DefaultTableModel model = (DefaultTableModel) DataTable.getModel();
 
-        int selectedRowIndex = DataTable.getSelectedRow();
-        updateData.id.setText(model.getValueAt(selectedRowIndex, 0).toString());
-        updateData.name.setText(model.getValueAt(selectedRowIndex, 1).toString());
-        updateData.phone.setText(model.getValueAt(selectedRowIndex, 2).toString());
-        updateData.nid.setText(model.getValueAt(selectedRowIndex, 3).toString());
-        updateData.address.setText(model.getValueAt(selectedRowIndex, 4).toString());
-        updateData.dob.setText(model.getValueAt(selectedRowIndex, 5).toString());
-        updateData.startDate.setText(model.getValueAt(selectedRowIndex, 6).toString());
-        updateData.endDate.setText(model.getValueAt(selectedRowIndex, 7).toString());
+        DefaultTableModel model = (DefaultTableModel) DataTable.getModel();
+        if (DataTable.getSelectedRow() == -1) {
+
+            if (DataTable.getRowCount() == 0) {
+
+                PopUp popUp = new PopUp();
+                popUp.setVisible(true);
+                popUp.setHeader.setText("Error!");
+                popUp.setHeader.setForeground(Color.red);
+                popUp.setMsg.setText("No data to Update.");
+
+            } else {
+                PopUp popUp = new PopUp();
+                popUp.setVisible(true);
+                popUp.setHeader.setText("Error!");
+                popUp.setHeader.setForeground(Color.red);
+                popUp.setMsg.setText("Select a Row to Update.");
+            }
+        } else {
+            UpdateStudent updateData = new UpdateStudent();
+            updateData.setVisible(true);
+
+            int selectedRowIndex = DataTable.getSelectedRow();
+            updateData.id.setText(model.getValueAt(selectedRowIndex, 0).toString());
+            updateData.name.setText(model.getValueAt(selectedRowIndex, 1).toString());
+            updateData.phone.setText(model.getValueAt(selectedRowIndex, 2).toString());
+            updateData.nid.setText(model.getValueAt(selectedRowIndex, 3).toString());
+            updateData.address.setText(model.getValueAt(selectedRowIndex, 4).toString());
+            updateData.dob.setText(model.getValueAt(selectedRowIndex, 5).toString());
+            updateData.startDate.setText(model.getValueAt(selectedRowIndex, 6).toString());
+            updateData.endDate.setText(model.getValueAt(selectedRowIndex, 7).toString());
+        }
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
