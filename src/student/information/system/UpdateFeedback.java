@@ -52,6 +52,7 @@ public class UpdateFeedback extends javax.swing.JFrame {
         date = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
         setUndecorated(true);
         setResizable(false);
 
@@ -153,6 +154,7 @@ public class UpdateFeedback extends javax.swing.JFrame {
         jLabel7.setText("Date");
 
         feedback.setBackground(new java.awt.Color(255, 255, 255));
+        feedback.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
         feedback.setForeground(new java.awt.Color(0, 0, 0));
         feedback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,6 +164,7 @@ public class UpdateFeedback extends javax.swing.JFrame {
 
         discription.setBackground(new java.awt.Color(255, 255, 255));
         discription.setColumns(20);
+        discription.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
         discription.setForeground(new java.awt.Color(0, 0, 0));
         discription.setRows(5);
         jScrollPane1.setViewportView(discription);
