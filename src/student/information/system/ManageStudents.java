@@ -106,7 +106,7 @@ public class ManageStudents extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Name", "Phone", "NID", "Address", "Date of Birth", "Start Date", "End Date"
+                "ID", "Name", "Phone", "NID", "Address", "Date of Birth", "Start Date", "Discription"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -128,13 +128,14 @@ public class ManageStudents extends javax.swing.JFrame {
             DataTable.getColumnModel().getColumn(0).setMinWidth(1);
             DataTable.getColumnModel().getColumn(0).setPreferredWidth(50);
             DataTable.getColumnModel().getColumn(0).setMaxWidth(100);
-            DataTable.getColumnModel().getColumn(1).setPreferredWidth(150);
+            DataTable.getColumnModel().getColumn(1).setPreferredWidth(120);
             DataTable.getColumnModel().getColumn(2).setResizable(false);
             DataTable.getColumnModel().getColumn(3).setResizable(false);
-            DataTable.getColumnModel().getColumn(4).setPreferredWidth(150);
+            DataTable.getColumnModel().getColumn(4).setPreferredWidth(120);
             DataTable.getColumnModel().getColumn(5).setResizable(false);
             DataTable.getColumnModel().getColumn(6).setResizable(false);
             DataTable.getColumnModel().getColumn(7).setResizable(false);
+            DataTable.getColumnModel().getColumn(7).setPreferredWidth(180);
         }
 
         search.setBackground(new java.awt.Color(255, 255, 255));
@@ -366,7 +367,7 @@ public class ManageStudents extends javax.swing.JFrame {
     public void updateTable() throws SQLException {
 
         Connection conn = DatabaseConnection.ConnectDb();
-        String url = "Select id, name, phone, nid, address, dob, startd, endd from studentsdata";
+        String url = "Select id, name, phone, nid, address, dob, startd, dis from studentsdata";
 
         try {
             PreparedStatement pstm = conn.prepareStatement(url);
@@ -385,7 +386,7 @@ public class ManageStudents extends javax.swing.JFrame {
                 colData[4] = rs.getString("address");
                 colData[5] = rs.getString("dob");
                 colData[6] = rs.getString("startd");
-                colData[7] = rs.getString("endd");
+                colData[7] = rs.getString("dis");
                 model.addRow(colData);
 
             }
@@ -434,7 +435,7 @@ public class ManageStudents extends javax.swing.JFrame {
                 colData[4] = rs.getString("address");
                 colData[5] = rs.getString("dob");
                 colData[6] = rs.getString("startd");
-                colData[7] = rs.getString("endd");
+                colData[7] = rs.getString("dis");
                 model.addRow(colData);
             }
 
