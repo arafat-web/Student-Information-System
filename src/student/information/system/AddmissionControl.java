@@ -38,7 +38,7 @@ public class AddmissionControl extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/student_registration_64px_white.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/read_online_64px.png"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));

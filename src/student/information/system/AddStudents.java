@@ -70,7 +70,8 @@ public class AddStudents extends javax.swing.JFrame {
         cancelButton = new keeptoo.KButton();
         dob = new datechooser.beans.DateChooserCombo();
         startDate = new datechooser.beans.DateChooserCombo();
-        endDate = new datechooser.beans.DateChooserCombo();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        dis = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add New Student");
@@ -173,7 +174,7 @@ public class AddStudents extends javax.swing.JFrame {
         jLabel9.setBackground(new java.awt.Color(0, 0, 0));
         jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("End Date:");
+        jLabel9.setText("Discription:");
 
         saveSData.setText("Save");
         saveSData.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -290,94 +291,54 @@ startDate.setCalendarPreferredSize(new java.awt.Dimension(300, 200));
 startDate.setWeekStyle(datechooser.view.WeekDaysStyle.SHORT);
 startDate.setFieldFont(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 14));
 
-endDate.setCurrentView(new datechooser.view.appearance.AppearancesList("Light",
-    new datechooser.view.appearance.ViewAppearance("custom",
-        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 12),
-            new java.awt.Color(230, 230, 230),
-            new java.awt.Color(0, 0, 255),
-            false,
-            true,
-            new datechooser.view.appearance.swing.ButtonPainter()),
-        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 12),
-            new java.awt.Color(230, 230, 230),
-            new java.awt.Color(0, 0, 255),
-            true,
-            true,
-            new datechooser.view.appearance.swing.ButtonPainter()),
-        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 12),
-            new java.awt.Color(0, 0, 255),
-            new java.awt.Color(0, 0, 255),
-            false,
-            true,
-            new datechooser.view.appearance.swing.ButtonPainter()),
-        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 12),
-            new java.awt.Color(128, 128, 128),
-            new java.awt.Color(0, 0, 255),
-            false,
-            true,
-            new datechooser.view.appearance.swing.LabelPainter()),
-        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 12),
-            new java.awt.Color(230, 230, 230),
-            new java.awt.Color(0, 0, 255),
-            false,
-            true,
-            new datechooser.view.appearance.swing.LabelPainter()),
-        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 12),
-            new java.awt.Color(230, 230, 230),
-            new java.awt.Color(255, 0, 0),
-            false,
-            false,
-            new datechooser.view.appearance.swing.ButtonPainter()),
-        (datechooser.view.BackRenderer)null,
-        false,
-        true)));
-endDate.setCalendarBackground(new java.awt.Color(255, 255, 255));
-endDate.setCalendarPreferredSize(new java.awt.Dimension(300, 200));
-endDate.setWeekStyle(datechooser.view.WeekDaysStyle.SHORT);
-endDate.setFieldFont(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 14));
+dis.setBackground(new java.awt.Color(255, 255, 255));
+dis.setColumns(10);
+dis.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+dis.setForeground(new java.awt.Color(0, 0, 0));
+dis.setRows(3);
+jScrollPane1.setViewportView(dis);
 
 javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
 jPanel1.setLayout(jPanel1Layout);
 jPanel1Layout.setHorizontalGroup(
-jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-.addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-.addGroup(jPanel1Layout.createSequentialGroup()
-    .addGap(49, 49, 49)
-    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-        .addGroup(jPanel1Layout.createSequentialGroup()
-            .addComponent(jLabel6)
-            .addGap(18, 18, 18)
-            .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGroup(jPanel1Layout.createSequentialGroup()
-            .addComponent(jLabel9)
-            .addGap(18, 18, 18)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addComponent(saveSData, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(58, 58, 58)
-                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(endDate, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addGroup(jPanel1Layout.createSequentialGroup()
-            .addComponent(jLabel8)
-            .addGap(18, 18, 18)
-            .addComponent(startDate, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGroup(jPanel1Layout.createSequentialGroup()
-            .addComponent(jLabel7)
-            .addGap(18, 18, 18)
-            .addComponent(dob, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(jLabel3)
-                .addComponent(jLabel4))
-            .addGap(18, 18, 18)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(name, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addGroup(jPanel1Layout.createSequentialGroup()
-            .addComponent(jLabel5)
-            .addGap(18, 18, 18)
-            .addComponent(nid, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
-    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    .addGroup(jPanel1Layout.createSequentialGroup()
+        .addGap(49, 49, 49)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel9)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
+                .addComponent(startDate, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addComponent(dob, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(name, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(nid, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(saveSData, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -408,15 +369,15 @@ jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGap(34, 34, 34)
                     .addComponent(jLabel8))
                 .addComponent(startDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(28, 28, 28)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGap(32, 32, 32)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLabel9)
-                .addComponent(endDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(43, 43, 43)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(18, 18, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(saveSData, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(0, 61, Short.MAX_VALUE))
+            .addGap(15, 15, 15))
     );
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -464,7 +425,7 @@ jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             popUp.setMsg.setText("Please enter Address.");
         } else {
             try {
-                String sql = "INSERT into studentsdata (name, phone, nid, address, dob, startd, endd) values (?,?,?,?,?,?,?)";
+                String sql = "INSERT into studentsdata (name, phone, nid, address, dob, startd, dis) values (?,?,?,?,?,?,?)";
                 ps = conn.prepareStatement(sql);
                 ps.setString(1, name.getText());
                 ps.setString(2, phone.getText());
@@ -472,7 +433,7 @@ jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 ps.setString(4, address.getText());
                 ps.setString(5, dob.getText());
                 ps.setString(6, startDate.getText());
-                ps.setString(7, endDate.getText());
+                ps.setString(7, dis.getText());
                 ps.execute();
                 rs.close();
                 ps.close();
@@ -489,11 +450,13 @@ jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             phone.setText("");
             nid.setText("");
             address.setText("");
+            dis.setText("");
            
             holder = new PlaceHolder(name, Color.GRAY, Color.black, "Name", false, "Times New Roman", 18);
             holder = new PlaceHolder(phone, Color.GRAY, Color.black, "Phone", false, "Times New Roman", 18);
             holder = new PlaceHolder(nid, Color.GRAY, Color.black, "NID Number", false, "Times New Roman", 18);
             holder = new PlaceHolder(address, Color.GRAY, Color.black, "Address", false, "Times New Roman", 18);
+             holder = new PlaceHolder(dis, Color.GRAY, Color.black, "Ex: Called about payment", false, "Times New Roman", 18);
         }
     }//GEN-LAST:event_saveSDataActionPerformed
 
@@ -584,8 +547,8 @@ jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField address;
     private keeptoo.KButton cancelButton;
+    private javax.swing.JTextArea dis;
     private datechooser.beans.DateChooserCombo dob;
-    private datechooser.beans.DateChooserCombo endDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -597,6 +560,7 @@ jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField name;
     private javax.swing.JTextField nid;
     private javax.swing.JTextField phone;

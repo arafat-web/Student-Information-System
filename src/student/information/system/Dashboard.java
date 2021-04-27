@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import student.information.system.ViewData.*;
 
 /**
  *
@@ -28,6 +29,7 @@ public final class Dashboard extends javax.swing.JFrame {
     int totalFeedback = 0;
     int activeStudent = 0;
 
+    ViewData data = new ViewData();
     public Dashboard() {
         initComponents();
         jtableCustom();
@@ -307,6 +309,11 @@ public final class Dashboard extends javax.swing.JFrame {
         listTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         listTable.setShowHorizontalLines(true);
         listTable.setShowVerticalLines(true);
+        listTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(listTable);
         if (listTable.getColumnModel().getColumnCount() > 0) {
             listTable.getColumnModel().getColumn(0).setMinWidth(1);
@@ -380,6 +387,20 @@ public final class Dashboard extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void listTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listTableMouseClicked
+        // TODO add your handling code here:
+
+        DefaultTableModel model = (DefaultTableModel) listTable.getModel();
+        int selectedRowIndex = listTable.getSelectedRow();
+        data.viewdata.setText(
+                
+                "<h1>"+model.getValueAt(selectedRowIndex, 0).toString()+"</h1>"
+        
+        
+        );
+        data.setVisible(true);
+    }//GEN-LAST:event_listTableMouseClicked
 
     /**
      * @param args the command line arguments
