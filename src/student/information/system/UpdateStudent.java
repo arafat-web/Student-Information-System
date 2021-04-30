@@ -56,9 +56,10 @@ public class UpdateStudent extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         id = new javax.swing.JTextField();
-        endDate = new javax.swing.JTextField();
         startDate = new javax.swing.JTextField();
         dob = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        dis = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -175,11 +176,6 @@ public class UpdateStudent extends javax.swing.JFrame {
         id.setForeground(new java.awt.Color(255, 255, 255));
         id.setBorder(null);
 
-        endDate.setBackground(new java.awt.Color(255, 255, 255));
-        endDate.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        endDate.setForeground(new java.awt.Color(0, 0, 0));
-        endDate.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-
         startDate.setBackground(new java.awt.Color(255, 255, 255));
         startDate.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         startDate.setForeground(new java.awt.Color(0, 0, 0));
@@ -195,6 +191,13 @@ public class UpdateStudent extends javax.swing.JFrame {
             }
         });
 
+        dis.setColumns(20);
+        dis.setLineWrap(true);
+        dis.setRows(2);
+        dis.setTabSize(4);
+        dis.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(dis);
+
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
         kGradientPanel1Layout.setHorizontalGroup(
@@ -206,10 +209,6 @@ public class UpdateStudent extends javax.swing.JFrame {
                         .addGap(53, 53, 53)
                         .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                .addComponent(updateData, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(87, 87, 87)
-                                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
                                 .addComponent(nid, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -219,11 +218,10 @@ public class UpdateStudent extends javax.swing.JFrame {
                                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(18, 18, 18)
-                                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(startDate, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(dob, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(endDate, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(startDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                                    .addComponent(dob, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)))
                             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addGap(18, 18, 18)
@@ -238,7 +236,11 @@ public class UpdateStudent extends javax.swing.JFrame {
                                         .addComponent(jLabel6)
                                         .addGap(18, 18, 18)
                                         .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(2, 2, 2))))
+                                .addGap(2, 2, 2))
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addComponent(updateData, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(87, 87, 87)
+                                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addGap(253, 253, 253)
                         .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -275,14 +277,16 @@ public class UpdateStudent extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(startDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47)
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(endDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(updateData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29))
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                    .addComponent(updateData, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -339,16 +343,16 @@ public class UpdateStudent extends javax.swing.JFrame {
             popUp.setHeader.setText("Error!");
             popUp.setHeader.setForeground(Color.red);
             popUp.setMsg.setText("Please enter Start Date.");
-        } else if (endDate.getText().equals("")) {
+        } else if (dis.getText().equals("")) {
             PopUp popUp = new PopUp();
             popUp.setVisible(true);
             popUp.setHeader.setText("Error!");
             popUp.setHeader.setForeground(Color.red);
-            popUp.setMsg.setText("Please enter End Date.");
+            popUp.setMsg.setText("Please enter Discription.");
         } else {
             String idnum = id.getText();
             int id = Integer.parseInt(idnum);
-            update(id, name.getText(), phone.getText(), nid.getText(), address.getText(), dob.getText(), startDate.getText(), endDate.getText());
+            update(id, name.getText(), phone.getText(), nid.getText(), address.getText(), dob.getText(), startDate.getText(), dis.getText());
             PopUp popUp = new PopUp();
             popUp.setVisible(true);
             popUp.setHeader.setText("Success!");
@@ -405,8 +409,8 @@ public class UpdateStudent extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField address;
     private keeptoo.KButton cancelButton;
+    public javax.swing.JTextArea dis;
     public javax.swing.JTextField dob;
-    public javax.swing.JTextField endDate;
     public javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -417,6 +421,7 @@ public class UpdateStudent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private keeptoo.KGradientPanel kGradientPanel1;
     public javax.swing.JTextField name;
     public javax.swing.JTextField nid;
@@ -424,8 +429,8 @@ public class UpdateStudent extends javax.swing.JFrame {
     public javax.swing.JTextField startDate;
     private keeptoo.KButton updateData;
     // End of variables declaration//GEN-END:variables
-public void update(int id, String name, String phone, String nid, String address, String dob, String startDate, String endDate) {
-        String sql = "UPDATE studentsdata SET name = ?, phone = ?, nid = ?, address = ?, dob = ?, startd = ?, endd = ? WHERE id = ?";
+public void update(int id, String name, String phone, String nid, String address, String dob, String startDate, String dis) {
+        String sql = "UPDATE studentsdata SET name = ?, phone = ?, nid = ?, address = ?, dob = ?, startd = ?, dis = ? WHERE id = ?";
 
         try (Connection conn = DatabaseConnection.ConnectDb();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -437,7 +442,7 @@ public void update(int id, String name, String phone, String nid, String address
             pstmt.setString(4, address);
             pstmt.setString(5, dob);
             pstmt.setString(6, startDate);
-            pstmt.setString(7, endDate);
+            pstmt.setString(7, dis);
             pstmt.setInt(8, id);
             // update 
             pstmt.executeUpdate();

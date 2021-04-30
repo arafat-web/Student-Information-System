@@ -30,6 +30,7 @@ public final class Dashboard extends javax.swing.JFrame {
     int activeStudent = 0;
 
     ViewData data = new ViewData();
+
     public Dashboard() {
         initComponents();
         jtableCustom();
@@ -166,7 +167,7 @@ public final class Dashboard extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Rockwell", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Active");
+        jLabel5.setText("Admitted");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -273,33 +274,33 @@ public final class Dashboard extends javax.swing.JFrame {
         listTable.setForeground(new java.awt.Color(0, 0, 0));
         listTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Name", "Phone", "NID", "Address", "Date of Birth", "Start Date", "End Date"
+                "Name", "Phone", "NID", "Address", "Date of Birth", "Start Date", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -316,18 +317,15 @@ public final class Dashboard extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(listTable);
         if (listTable.getColumnModel().getColumnCount() > 0) {
-            listTable.getColumnModel().getColumn(0).setMinWidth(1);
-            listTable.getColumnModel().getColumn(0).setPreferredWidth(50);
-            listTable.getColumnModel().getColumn(0).setMaxWidth(50);
+            listTable.getColumnModel().getColumn(0).setResizable(false);
+            listTable.getColumnModel().getColumn(0).setPreferredWidth(150);
             listTable.getColumnModel().getColumn(1).setResizable(false);
-            listTable.getColumnModel().getColumn(1).setPreferredWidth(150);
             listTable.getColumnModel().getColumn(2).setResizable(false);
             listTable.getColumnModel().getColumn(3).setResizable(false);
+            listTable.getColumnModel().getColumn(3).setPreferredWidth(150);
             listTable.getColumnModel().getColumn(4).setResizable(false);
-            listTable.getColumnModel().getColumn(4).setPreferredWidth(150);
             listTable.getColumnModel().getColumn(5).setResizable(false);
             listTable.getColumnModel().getColumn(6).setResizable(false);
-            listTable.getColumnModel().getColumn(7).setResizable(false);
         }
 
         jLabel9.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
@@ -394,10 +392,7 @@ public final class Dashboard extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) listTable.getModel();
         int selectedRowIndex = listTable.getSelectedRow();
         data.viewdata.setText(
-                
-                "<h1>"+model.getValueAt(selectedRowIndex, 0).toString()+"</h1>"
-        
-        
+                "<h1>" + model.getValueAt(selectedRowIndex, 0).toString() + "</h1>"
         );
         data.setVisible(true);
     }//GEN-LAST:event_listTableMouseClicked
@@ -501,7 +496,7 @@ public final class Dashboard extends javax.swing.JFrame {
 
     private void activeStudent() throws SQLException {
         Connection conn = DatabaseConnection.ConnectDb();
-        String url = "SELECT COUNT(id) FROM studentsdata;";
+        String url = "SELECT COUNT(DISTINCT key) FROM studentsdata";
 
         try {
             PreparedStatement pstm = conn.prepareStatement(url);
@@ -509,8 +504,9 @@ public final class Dashboard extends javax.swing.JFrame {
 
             while (rs.next()) {
                 activeStudent = rs.getInt(1);
+
             }
-            activeStudents.setText(Integer.toString(activeStudent));
+            activeStudents.setText(Integer.toString(activeStudent - 2));
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -519,7 +515,7 @@ public final class Dashboard extends javax.swing.JFrame {
     public void updateTable() throws SQLException {
 
         Connection conn = DatabaseConnection.ConnectDb();
-        String url = "Select id, name, phone, nid, address, dob, startd, endd from studentsdata ORDER BY id DESC";
+        String url = "Select id, name, phone, nid, address, dob, startd, status from studentsdata ORDER BY id DESC";
 
         try {
             PreparedStatement pstm = conn.prepareStatement(url);
@@ -531,14 +527,13 @@ public final class Dashboard extends javax.swing.JFrame {
                 model.removeRow(i);
             }
             while (rs.next()) {
-                colData[0] = rs.getString("id");
-                colData[1] = rs.getString("name");
-                colData[2] = rs.getString("phone");
-                colData[3] = rs.getString("nid");
-                colData[4] = rs.getString("address");
-                colData[5] = rs.getString("dob");
-                colData[6] = rs.getString("startd");
-                colData[7] = rs.getString("endd");
+                colData[0] = rs.getString("name");
+                colData[1] = rs.getString("phone");
+                colData[2] = rs.getString("nid");
+                colData[3] = rs.getString("address");
+                colData[4] = rs.getString("dob");
+                colData[5] = rs.getString("startd");
+                colData[6] = rs.getString("status");
                 model.addRow(colData);
 
             }

@@ -275,7 +275,7 @@ public class ManageStudents extends javax.swing.JFrame {
             updateData.address.setText(model.getValueAt(selectedRowIndex, 4).toString());
             updateData.dob.setText(model.getValueAt(selectedRowIndex, 5).toString());
             updateData.startDate.setText(model.getValueAt(selectedRowIndex, 6).toString());
-            updateData.endDate.setText(model.getValueAt(selectedRowIndex, 7).toString());
+            updateData.dis.setText(model.getValueAt(selectedRowIndex, 7).toString());
         }
     }//GEN-LAST:event_updateButtonActionPerformed
 

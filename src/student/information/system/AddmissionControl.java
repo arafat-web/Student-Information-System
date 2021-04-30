@@ -5,6 +5,19 @@
  */
 package student.information.system;
 
+import com.placeholder.PlaceHolder;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+
 /**
  *
  * @author Arafat Hossain Ar
@@ -14,8 +27,22 @@ public class AddmissionControl extends javax.swing.JFrame {
     /**
      * Creates new form AddmissionControl
      */
+    PlaceHolder holder;
+    Connection conn;
+    ResultSet rs;
+    PreparedStatement ps;
+    
+    int key = 0;
+
     public AddmissionControl() {
         initComponents();
+        try {
+            updateTable();
+            jtableCustom();
+        } catch (SQLException ex) {
+            Logger.getLogger(AddmissionControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        holder = new PlaceHolder(search, Color.LIGHT_GRAY, Color.black, "Ex: 01789404345", false, "TOHOMA", 15);
     }
 
     /**
@@ -31,6 +58,20 @@ public class AddmissionControl extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        infoTable = new javax.swing.JTable();
+        search = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        name = new javax.swing.JTextField();
+        phone = new javax.swing.JTextField();
+        addmissiondate = new datechooser.beans.DateChooserCombo();
+        eventSave = new keeptoo.KButton();
+        cancelButton = new keeptoo.KButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        statusbox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,7 +94,7 @@ public class AddmissionControl extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addContainerGap(771, Short.MAX_VALUE))
+                .addContainerGap(871, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -67,32 +108,357 @@ public class AddmissionControl extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 628, Short.MAX_VALUE))
-        );
+        infoTable.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
+        infoTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Name", "Phone", "Discription", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        infoTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        infoTable.setRowHeight(20);
+        infoTable.setShowHorizontalLines(true);
+        infoTable.setShowVerticalLines(true);
+        infoTable.getTableHeader().setResizingAllowed(false);
+        infoTable.getTableHeader().setReorderingAllowed(false);
+        infoTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                infoTableMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(infoTable);
+        if (infoTable.getColumnModel().getColumnCount() > 0) {
+            infoTable.getColumnModel().getColumn(3).setResizable(false);
+        }
 
-        pack();
+        search.setBackground(new java.awt.Color(255, 255, 255));
+        search.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
+        search.setForeground(new java.awt.Color(0, 0, 0));
+        search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchActionPerformed(evt);
+            }
+        });
+        search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                searchKeyTyped(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel11.setForeground(java.awt.Color.red);
+        jLabel11.setText("Search");
+
+        name.setEditable(false);
+        name.setBackground(new java.awt.Color(255, 255, 255));
+        name.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
+        name.setForeground(new java.awt.Color(0, 0, 0));
+        name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameActionPerformed(evt);
+            }
+        });
+
+        phone.setEditable(false);
+        phone.setBackground(new java.awt.Color(255, 255, 255));
+        phone.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
+        phone.setForeground(new java.awt.Color(0, 0, 0));
+        phone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phoneActionPerformed(evt);
+            }
+        });
+
+        addmissiondate.setCurrentView(new datechooser.view.appearance.AppearancesList("Bordered",
+            new datechooser.view.appearance.ViewAppearance("custom",
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 12),
+                    new java.awt.Color(230, 230, 230),
+                    new java.awt.Color(0, 0, 255),
+                    false,
+                    true,
+                    new datechooser.view.appearance.swing.ButtonPainter()),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 12),
+                    new java.awt.Color(230, 230, 230),
+                    new java.awt.Color(0, 0, 255),
+                    true,
+                    true,
+                    new datechooser.view.appearance.swing.ButtonPainter()),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 12),
+                    new java.awt.Color(0, 0, 255),
+                    new java.awt.Color(0, 0, 255),
+                    false,
+                    true,
+                    new datechooser.view.appearance.swing.ButtonPainter()),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 12),
+                    new java.awt.Color(128, 128, 128),
+                    new java.awt.Color(0, 0, 255),
+                    false,
+                    true,
+                    new datechooser.view.appearance.swing.LabelPainter()),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 12),
+                    new java.awt.Color(230, 230, 230),
+                    new java.awt.Color(0, 0, 255),
+                    false,
+                    true,
+                    new datechooser.view.appearance.swing.LabelPainter()),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 12),
+                    new java.awt.Color(230, 230, 230),
+                    new java.awt.Color(255, 0, 0),
+                    false,
+                    false,
+                    new datechooser.view.appearance.swing.ButtonPainter()),
+                (datechooser.view.BackRenderer)null,
+                false,
+                true)));
+    addmissiondate.setCalendarBackground(new java.awt.Color(255, 255, 255));
+    addmissiondate.setCalendarPreferredSize(new java.awt.Dimension(340, 200));
+
+    eventSave.setText("Save");
+    eventSave.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+    eventSave.setkHoverEndColor(new java.awt.Color(0, 102, 102));
+    eventSave.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+    eventSave.setkHoverStartColor(new java.awt.Color(0, 102, 51));
+    eventSave.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            eventSaveActionPerformed(evt);
+        }
+    });
+
+    cancelButton.setText("Cancel");
+    cancelButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+    cancelButton.setkHoverColor(new java.awt.Color(153, 153, 153));
+    cancelButton.setkHoverEndColor(java.awt.Color.red);
+    cancelButton.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+    cancelButton.setkHoverStartColor(new java.awt.Color(255, 102, 0));
+    cancelButton.setkStartColor(java.awt.Color.red);
+    cancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            cancelButtonMousePressed(evt);
+        }
+    });
+
+    jLabel10.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+    jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+    jLabel10.setText("Name");
+
+    jLabel9.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+    jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+    jLabel9.setText("Phone");
+
+    jLabel7.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+    jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+    jLabel7.setText("Addmission Date");
+
+    jLabel12.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+    jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+    jLabel12.setText("Status");
+
+    statusbox.setBackground(new java.awt.Color(255, 255, 255));
+    statusbox.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+    statusbox.setForeground(new java.awt.Color(0, 0, 0));
+    statusbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Pending", "Admitted" }));
+    statusbox.setBorder(null);
+
+    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+    jPanel1.setLayout(jPanel1Layout);
+    jPanel1Layout.setHorizontalGroup(
+        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel11)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(81, 81, 81)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(phone, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(name, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel12)
+                            .addComponent(statusbox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(eventSave, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(addmissiondate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(18, 39, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 772, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addContainerGap())
+    );
+    jPanel1Layout.setVerticalGroup(
+        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel1Layout.createSequentialGroup()
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel11))
+            .addGap(8, 8, 8)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(47, 47, 47)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(44, 44, 44)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(addmissiondate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(53, 53, 53)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(statusbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(38, 38, 38)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(eventSave, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(0, 20, Short.MAX_VALUE))
+    );
+
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    layout.setVerticalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+
+    pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void infoTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_infoTableMouseClicked
+        // TODO add your handling code here:
+
+        DefaultTableModel model = (DefaultTableModel) infoTable.getModel();
+
+        int selectedRowIndex = infoTable.getSelectedRow();
+        name.setText(model.getValueAt(selectedRowIndex, 0).toString());
+        phone.setText(model.getValueAt(selectedRowIndex, 1).toString());
+    }//GEN-LAST:event_infoTableMouseClicked
+
+    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchActionPerformed
+
+    private void searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchKeyReleased
+        try {
+            // TODO add your handling code here:
+            searchStudent();
+        } catch (SQLException ex) {
+            Logger.getLogger(AddFeedback.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_searchKeyReleased
+
+    private void searchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchKeyTyped
+        // TODO add your handling code here:
+        char iNumber = evt.getKeyChar();
+        if (!(Character.isDigit(iNumber))
+                || (iNumber == KeyEvent.VK_BACK_SPACE)
+                || (iNumber == KeyEvent.VK_DELETE)) {
+            evt.consume();
+
+        }
+        if ((Character.isDigit(iNumber)) || (iNumber == KeyEvent.VK_BACK_SPACE)
+                || (iNumber == KeyEvent.VK_DELETE)) {
+        } else {
+
+            PopUp popUp = new PopUp();
+            popUp.setVisible(true);
+            popUp.setHeader.setText("Error!");
+            popUp.setHeader.setForeground(Color.red);
+            popUp.setMsg.setText("Please enter numbers only.");
+
+        }
+    }//GEN-LAST:event_searchKeyTyped
+
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameActionPerformed
+
+    private void phoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_phoneActionPerformed
+
+    private void eventSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventSaveActionPerformed
+        // TODO add your handling code here
+
+        if (name.getText().equals("") || phone.getText().equals("")) {
+            PopUp popUp = new PopUp();
+            popUp.setVisible(true);
+            popUp.setHeader.setText("Error!");
+            popUp.setHeader.setForeground(Color.red);
+            popUp.setMsg.setText("Please select data first.");
+
+        } else if (statusbox.getSelectedItem().equals("None")) {
+            PopUp popUp = new PopUp();
+            popUp.setVisible(true);
+            popUp.setHeader.setText("Error!");
+            popUp.setHeader.setForeground(Color.red);
+            popUp.setMsg.setText("Please select Status.");
+        } else {
+            try {
+                   
+                if(statusbox.getSelectedItem().equals("None")){
+                    key = 5;
+                }else if(statusbox.getSelectedItem().equals("Pending")){
+                    key = 4;
+                } else{
+                    key = (int) Math.floor(Math.random() * (999999 - 1 + 1) + 1);
+                }
+
+                update(phone.getText(), (String) statusbox.getSelectedItem(), key);
+                updateTable();
+            } catch (Exception ex) {
+                System.out.println(ex);
+
+            }
+            PopUp popUp = new PopUp();
+            popUp.setVisible(true);
+            popUp.setHeader.setText("Success!");
+            popUp.setHeader.setForeground(Color.green);
+            popUp.setMsg.setText("Status saved successfully.");
+            name.setText("");
+            phone.setText("");
+            addmissiondate.setText("");
+            statusbox.setSelectedIndex(0);
+            
+        }
+
+    }//GEN-LAST:event_eventSaveActionPerformed
+
+    private void cancelButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMousePressed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_cancelButtonMousePressed
 
     /**
      * @param args the command line arguments
@@ -130,42 +496,110 @@ public class AddmissionControl extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private datechooser.beans.DateChooserCombo addmissiondate;
+    private keeptoo.KButton cancelButton;
+    private keeptoo.KButton eventSave;
+    private javax.swing.JTable infoTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField name;
+    private javax.swing.JTextField phone;
+    private javax.swing.JTextField search;
+    private javax.swing.JComboBox<String> statusbox;
     // End of variables declaration//GEN-END:variables
+
+    public void updateTable() throws SQLException {
+
+        Connection conn = DatabaseConnection.ConnectDb();
+        String url = "Select name, phone, dis, status from studentsdata";
+
+        try {
+            PreparedStatement pstm = conn.prepareStatement(url);
+            ResultSet rs = pstm.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) infoTable.getModel();
+            Object[] colData = new Object[4];
+            int rowCount = model.getRowCount();
+            for (int i = rowCount - 1; i >= 0; i--) {
+                model.removeRow(i);
+            }
+            while (rs.next()) {
+
+                colData[0] = rs.getString("name");
+                colData[1] = rs.getString("phone");
+                colData[2] = rs.getString("dis");
+                colData[3] = rs.getString("status");
+                model.addRow(colData);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+    }
+
+    private void jtableCustom() {
+        JTableHeader header = infoTable.getTableHeader();
+        header.setBackground(Color.getHSBColor(54, 109, 104));
+        header.setForeground(Color.BLACK);
+        header.setFont(new Font("Tahoma", Font.BOLD, 20));
+        infoTable.setGridColor(Color.LIGHT_GRAY);
+        infoTable.setRowHeight(25);
+
+    }
+
+    public void searchStudent() throws SQLException {
+
+        Connection con = DatabaseConnection.ConnectDb();
+        PreparedStatement ps;
+        updateTable();
+        if (search.getText().equals("")) {
+            updateTable();
+        } else {
+
+            ps = con.prepareStatement("SELECT * FROM `studentsdata` WHERE  phone = '" + search.getText() + "'");
+
+            ResultSet rs = ps.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) infoTable.getModel();
+
+            Object[] colData = new Object[4];
+            int rowCount = model.getRowCount();
+            for (int i = rowCount - 1; i >= 0; i--) {
+                model.removeRow(i);
+            }
+            while (rs.next()) {
+
+                colData[0] = rs.getString("Name");
+                colData[1] = rs.getString("Phone");
+                colData[2] = rs.getString("Dis");
+                colData[3] = rs.getString("Status");
+                model.addRow(colData);
+            }
+
+        }
+    }
+
+    public void update(String phone, String status, int key) {
+        String sql = "UPDATE studentsdata SET status = ?, key = ? WHERE phone = ?";
+
+        try (Connection conn = DatabaseConnection.ConnectDb();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+            pstmt.setString(1, status);
+            pstmt.setInt(2, key);
+            pstmt.setString(3, phone);
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

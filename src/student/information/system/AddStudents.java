@@ -26,6 +26,7 @@ public class AddStudents extends javax.swing.JFrame {
     ResultSet rs;
     PreparedStatement ps;
     PlaceHolder holder;
+    int key = 0;
 
     public AddStudents() {
         initComponents();
@@ -72,6 +73,8 @@ public class AddStudents extends javax.swing.JFrame {
         startDate = new datechooser.beans.DateChooserCombo();
         jScrollPane1 = new javax.swing.JScrollPane();
         dis = new javax.swing.JTextArea();
+        jLabel10 = new javax.swing.JLabel();
+        statusbox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add New Student");
@@ -79,6 +82,7 @@ public class AddStudents extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -111,20 +115,25 @@ public class AddStudents extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Name:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 94, -1, -1));
 
         name.setBackground(new java.awt.Color(255, 255, 255));
         name.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         name.setForeground(new java.awt.Color(0, 0, 0));
         name.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        jPanel1.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 96, 302, -1));
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Phone:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 152, -1, -1));
 
         phone.setBackground(new java.awt.Color(255, 255, 255));
         phone.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -135,11 +144,13 @@ public class AddStudents extends javax.swing.JFrame {
                 phoneKeyTyped(evt);
             }
         });
+        jPanel1.add(phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 152, 302, -1));
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("NID:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 207, -1, -1));
 
         nid.setBackground(new java.awt.Color(255, 255, 255));
         nid.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -150,31 +161,37 @@ public class AddStudents extends javax.swing.JFrame {
                 nidKeyTyped(evt);
             }
         });
+        jPanel1.add(nid, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 209, 302, -1));
 
         address.setBackground(new java.awt.Color(255, 255, 255));
         address.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         address.setForeground(new java.awt.Color(0, 0, 0));
         address.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        jPanel1.add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 266, 302, -1));
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Address:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 264, -1, -1));
 
         jLabel7.setBackground(new java.awt.Color(0, 0, 0));
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Date of Birth:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 325, -1, -1));
 
         jLabel8.setBackground(new java.awt.Color(0, 0, 0));
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Start Date:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 387, -1, -1));
 
         jLabel9.setBackground(new java.awt.Color(0, 0, 0));
         jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Discription:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 519, -1, -1));
 
         saveSData.setText("Save");
         saveSData.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -186,6 +203,7 @@ public class AddStudents extends javax.swing.JFrame {
                 saveSDataActionPerformed(evt);
             }
         });
+        jPanel1.add(saveSData, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 661, 122, 37));
 
         cancelButton.setText("Cancel");
         cancelButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -199,6 +217,7 @@ public class AddStudents extends javax.swing.JFrame {
                 cancelButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(cancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(356, 661, 122, 37));
 
         dob.setCurrentView(new datechooser.view.appearance.AppearancesList("Light",
             new datechooser.view.appearance.ViewAppearance("custom",
@@ -244,6 +263,7 @@ public class AddStudents extends javax.swing.JFrame {
     dob.setCalendarBackground(new java.awt.Color(255, 255, 255));
     dob.setCalendarPreferredSize(new java.awt.Dimension(300, 200));
     dob.setFieldFont(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 14));
+    jPanel1.add(dob, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 325, 302, -1));
 
     startDate.setCurrentView(new datechooser.view.appearance.AppearancesList("Light",
         new datechooser.view.appearance.ViewAppearance("custom",
@@ -290,6 +310,7 @@ startDate.setCalendarBackground(new java.awt.Color(255, 255, 255));
 startDate.setCalendarPreferredSize(new java.awt.Dimension(300, 200));
 startDate.setWeekStyle(datechooser.view.WeekDaysStyle.SHORT);
 startDate.setFieldFont(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 14));
+jPanel1.add(startDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 383, 302, -1));
 
 dis.setBackground(new java.awt.Color(255, 255, 255));
 dis.setColumns(10);
@@ -298,97 +319,30 @@ dis.setForeground(new java.awt.Color(0, 0, 0));
 dis.setRows(3);
 jScrollPane1.setViewportView(dis);
 
-javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-jPanel1.setLayout(jPanel1Layout);
-jPanel1Layout.setHorizontalGroup(
-    jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-    .addGroup(jPanel1Layout.createSequentialGroup()
-        .addGap(49, 49, 49)
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel9)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addComponent(startDate, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel7)
-                .addGap(18, 18, 18)
-                .addComponent(dob, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(name, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(nid, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(saveSData, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
-                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
-    jPanel1Layout.setVerticalGroup(
-        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(60, 60, 60)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(33, 33, 33)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addGap(31, 31, 31)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(nid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5))
-                    .addGap(32, 32, 32)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6))
-                    .addGap(36, 36, 36)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel7)
-                        .addComponent(dob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(34, 34, 34)
-                    .addComponent(jLabel8))
-                .addComponent(startDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(32, 32, 32)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel9)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(18, 18, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(saveSData, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(15, 15, 15))
-    );
+jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 519, 302, 116));
 
-    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-    getContentPane().setLayout(layout);
-    layout.setHorizontalGroup(
-        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+jLabel10.setBackground(new java.awt.Color(0, 0, 0));
+jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
+jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+jLabel10.setText("Status:");
+jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 452, 60, -1));
+
+statusbox.setBackground(new java.awt.Color(255, 255, 255));
+statusbox.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+statusbox.setForeground(new java.awt.Color(0, 0, 0));
+statusbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Pending", "Admitted" }));
+statusbox.setBorder(null);
+jPanel1.add(statusbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 451, 302, -1));
+
+javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+getContentPane().setLayout(layout);
+layout.setHorizontalGroup(
+    layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE)
     );
 
     pack();
@@ -397,7 +351,13 @@ jPanel1Layout.setHorizontalGroup(
 
     private void saveSDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveSDataActionPerformed
         // TODO add your handling code here:
-
+        if (statusbox.getSelectedItem().equals("None")) {
+            key = 5;
+        } else if (statusbox.getSelectedItem().equals("Pending")) {
+            key = 4;
+        } else {
+            key = (int) Math.floor(Math.random() * (999999 - 1 + 1) + 1);
+        }
         if (name.getText().equals("Name") || name.getText().equals("")) {
             PopUp popUp = new PopUp();
             popUp.setVisible(true);
@@ -424,8 +384,9 @@ jPanel1Layout.setHorizontalGroup(
             popUp.setHeader.setForeground(Color.red);
             popUp.setMsg.setText("Please enter Address.");
         } else {
+
             try {
-                String sql = "INSERT into studentsdata (name, phone, nid, address, dob, startd, dis) values (?,?,?,?,?,?,?)";
+                String sql = "INSERT into studentsdata (name, phone, nid, address, dob, startd, dis, status, key) values (?,?,?,?,?,?,?,?,?)";
                 ps = conn.prepareStatement(sql);
                 ps.setString(1, name.getText());
                 ps.setString(2, phone.getText());
@@ -434,6 +395,8 @@ jPanel1Layout.setHorizontalGroup(
                 ps.setString(5, dob.getText());
                 ps.setString(6, startDate.getText());
                 ps.setString(7, dis.getText());
+                ps.setString(8, (String) statusbox.getSelectedItem());
+                ps.setInt(9, key);
                 ps.execute();
                 rs.close();
                 ps.close();
@@ -451,12 +414,13 @@ jPanel1Layout.setHorizontalGroup(
             nid.setText("");
             address.setText("");
             dis.setText("");
-           
+            statusbox.setSelectedIndex(0);
+
             holder = new PlaceHolder(name, Color.GRAY, Color.black, "Name", false, "Times New Roman", 18);
             holder = new PlaceHolder(phone, Color.GRAY, Color.black, "Phone", false, "Times New Roman", 18);
             holder = new PlaceHolder(nid, Color.GRAY, Color.black, "NID Number", false, "Times New Roman", 18);
             holder = new PlaceHolder(address, Color.GRAY, Color.black, "Address", false, "Times New Roman", 18);
-             holder = new PlaceHolder(dis, Color.GRAY, Color.black, "Ex: Called about payment", false, "Times New Roman", 18);
+            holder = new PlaceHolder(dis, Color.GRAY, Color.black, "Ex: Called about payment", false, "Times New Roman", 18);
         }
     }//GEN-LAST:event_saveSDataActionPerformed
 
@@ -550,6 +514,7 @@ jPanel1Layout.setHorizontalGroup(
     private javax.swing.JTextArea dis;
     private datechooser.beans.DateChooserCombo dob;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -566,5 +531,6 @@ jPanel1Layout.setHorizontalGroup(
     private javax.swing.JTextField phone;
     private keeptoo.KButton saveSData;
     private datechooser.beans.DateChooserCombo startDate;
+    private javax.swing.JComboBox<String> statusbox;
     // End of variables declaration//GEN-END:variables
 }

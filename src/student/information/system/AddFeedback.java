@@ -18,7 +18,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -229,7 +228,7 @@ public class AddFeedback extends javax.swing.JFrame {
             {null, null, null}
         },
         new String [] {
-            "Name", "Phone", "End Date"
+            "Name", "Phone", "Start Date"
         }
     ) {
         boolean[] canEdit = new boolean [] {
@@ -588,7 +587,7 @@ public class AddFeedback extends javax.swing.JFrame {
     public void updateTable() throws SQLException {
 
         Connection conn = DatabaseConnection.ConnectDb();
-        String url = "Select name, phone, endd from studentsdata";
+        String url = "Select name, phone, startd from studentsdata";
 
         try {
             PreparedStatement pstm = conn.prepareStatement(url);
@@ -603,7 +602,7 @@ public class AddFeedback extends javax.swing.JFrame {
 
                 colData[0] = rs.getString("name");
                 colData[1] = rs.getString("phone");
-                colData[2] = rs.getString("endd");
+                colData[2] = rs.getString("startd");
                 model.addRow(colData);
 
             }
