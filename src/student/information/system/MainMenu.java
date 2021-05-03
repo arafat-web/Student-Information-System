@@ -65,6 +65,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Main Menu");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -304,6 +305,11 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel9.setBackground(new java.awt.Color(241, 239, 241));
         jPanel9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 102), 1, true));
         jPanel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel9MouseClicked(evt);
+            }
+        });
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/settings_64px.png"))); // NOI18N
 
@@ -417,6 +423,11 @@ public class MainMenu extends javax.swing.JFrame {
         ViewFeedback viewData = new ViewFeedback();
         viewData.setVisible(true);
     }//GEN-LAST:event_jPanel8MouseClicked
+
+    private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
+        // TODO add your handling code here:
+        new AddmissionControl().setVisible(true);
+    }//GEN-LAST:event_jPanel9MouseClicked
 
     /**
      * @param args the command line arguments

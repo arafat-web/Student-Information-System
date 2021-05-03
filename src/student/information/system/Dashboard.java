@@ -392,9 +392,47 @@ public final class Dashboard extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) listTable.getModel();
         int selectedRowIndex = listTable.getSelectedRow();
         data.viewdata.setText(
-                "<h1>" + model.getValueAt(selectedRowIndex, 0).toString() + "</h1>"
+                "  <table align=center width=100% border=1>\n"
+                + "  <tr>\n"
+                + "    <td><big><b>Name</b></big></td>\n"
+                + "    <td><big><b>" + model.getValueAt(selectedRowIndex, 0).toString() + "</b></big></td>\n"
+                + "  </tr>\n"
+                + "    \n"
+                + "      <tr>\n"
+                + "    <td><big><b>Phone</b></big></td>\n"
+                + "    <td><big><b>" + model.getValueAt(selectedRowIndex, 1).toString() + "</b></big></td>\n"
+                + "  </tr>\n"
+                + "    \n"
+                + "      <tr>\n"
+                + "    <td><big><b>Nation ID</b></big></td>\n"
+                + "    <td><big><b>" + model.getValueAt(selectedRowIndex, 2).toString() + "</b></big></td>\n"
+                + "  </tr>\n"
+                + "    \n"
+                + "      <tr>\n"
+                + "    <td><big><b>Address</b></big></td>\n"
+                + "    <td><big><b>" + model.getValueAt(selectedRowIndex, 3).toString() + "</b></big></td>\n"
+                + "  </tr>\n"
+                + "    \n"
+                + "      <tr>\n"
+                + "    <td><big><b>Date of Birth</b></big></td>\n"
+                + "    <td><big><b>" + model.getValueAt(selectedRowIndex, 4).toString() + "</b></big></td>\n"
+                + "  </tr>\n"
+                + "    \n"
+                + "      <tr>\n"
+                + "    <td><big><b>Start Date</b></big></td>\n"
+                + "    <td><big><b>" + model.getValueAt(selectedRowIndex, 5).toString() + "</b></big></td>\n"
+                + "  </tr>\n"
+                + "    \n"
+                + "      <tr>\n"
+                + "    <td><big><b>Status</b></big></td>\n"
+                + "    <td><big><b>" + model.getValueAt(selectedRowIndex, 6).toString() + "</b></big></td>\n"
+                + "  </tr>\n"
+                + "</table>"
         );
         data.setVisible(true);
+
+//        "<h1>" + model.getValueAt(selectedRowIndex, 0).toString() + "</h1>"
+
     }//GEN-LAST:event_listTableMouseClicked
 
     /**
