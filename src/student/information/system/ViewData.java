@@ -37,6 +37,7 @@ public class ViewData extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("View Data");
         setAlwaysOnTop(true);
+        setUndecorated(true);
         setResizable(false);
 
         kGradientPanel1.setBackground(new java.awt.Color(255, 255, 255));
